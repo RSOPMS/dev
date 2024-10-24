@@ -1,4 +1,4 @@
-# dev
+# DEV
 
 Development environment setup instructions.
 
@@ -54,3 +54,23 @@ git config --global core.hooksPath <path_to_hooks_folder>
 - Feature branches must follow a naming scheme of `<type>/<branch_name>` (e.g. `ci/buildSystem`).
 - After a feature/fix/... has been developed, the branch is merged into `dev` branch using a **pull request**, which deletes the branch after the merge.
 - Feature branches are based from `dev` branch and are to be updated using a **pull request branch** on merge **conflicts**.
+
+> [!IMPORTANT]
+>
+> To use private repos, run the following commands
+>
+> ```sh
+> git config --global url.git@github.com:.insteadOf https://github.com/
+> ```
+>
+> ```sh
+> export GOPRIVATE=github.com/RSOPMS/framework
+> ```
+
+## Live server
+
+Install [air-verse/air](https://github.com/air-verse/air)
+
+```sh
+go install github.com/air-verse/air@latest
+```
