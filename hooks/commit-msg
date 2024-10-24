@@ -1,0 +1,29 @@
+#!/bin/bash
+
+msg=$(cat "$1")
+
+regexp_conv_comm="(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)"
+regexp_issue="#[1-9][0-9]*"
+regexp_line_length="^.{0,80}$"
+
+regexp_full="$regexp_conv_comm!?: $regexp_issue .*"
+
+if ! [[ $msg =~ $regexp_conv_comm ]]; then
+    echo >&2 "[ERROR] Invalid commit type"
+    exit 1
+fi
+
+if ! [[ $msg =~ $regexp_issue ]]; then
+    echo >&2 "[ERROR] Invalid issue number"
+    exit 1
+fi
+
+if ! [[ $msg =~ $regexp_line_length ]]; then
+    echo >&2 "[ERROR] Invalid line length"
+    exit 1
+fi
+
+if ! [[ $msg =~ $regexp_full ]]; then
+    echo >&2 "[ERROR] Invalid format"
+    exit 1
+fi
